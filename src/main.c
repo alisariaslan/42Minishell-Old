@@ -150,7 +150,7 @@ int	main(int ac, char **av, char **envv)
 	{
 		signal(SIGINT, signal_handler);
 		get_input(&input);
-		add_history();
+		add_history(input);
 		if (ft_isemptystr(input, 1))
 		{
 			free(input);
