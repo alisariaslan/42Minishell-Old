@@ -6,7 +6,7 @@
 /*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 22:52:30 by jrameau           #+#    #+#             */
-/*   Updated: 2023/05/03 22:14:23 by tyavas           ###   ########.fr       */
+/*   Updated: 2023/05/03 23:17:40 by tyavas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static t_list	*get_correct_file(t_list **file, int fd)
 	return (tmp);
 }
 
+
+
 int	get_next_line(const int fd, char **line)
 {
 	char			buf[BUFF_SIZE + 1];
@@ -40,11 +42,15 @@ int	get_next_line(const int fd, char **line)
 	if ((fd < 0 || line == NULL || read(fd, buf, 0) < 0))
 		return (-1);
 	curr = get_correct_file(&file, fd);
-	MALLCHECK((*line = ft_strnew(1)));
+	*line = ft_strnew(1);
+	if (!*line)
+		return (-1);
 	while ((ret = read(fd, buf, BUFF_SIZE)))
 	{
 		buf[ret] = '\0';
-		MALLCHECK((curr->content = ft_strjoin(curr->content, buf)));
+		curr->content = ft_strjoin(curr->content, buf);
+		if (curr->content)
+			return (-1);
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
