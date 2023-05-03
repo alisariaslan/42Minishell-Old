@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_countwords.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrameau <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 15:17:40 by jrameau           #+#    #+#             */
-/*   Updated: 2016/09/28 15:17:41 by jrameau          ###   ########.fr       */
+/*   Updated: 2023/05/03 21:49:06 by tyavas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_countwords(char const *str, char c)
+int	ft_countwords(char const *str, char c)
 {
-	int count;
+	int	count;
 	int	i;
 
 	i = 0;

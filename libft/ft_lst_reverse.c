@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_reverse.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrameau <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 16:09:31 by jrameau           #+#    #+#             */
-/*   Updated: 2016/10/15 16:09:37 by jrameau          ###   ########.fr       */
+/*   Updated: 2023/05/03 21:51:56 by tyavas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lst_reverse(t_list *alst)
+t_list	*ft_lst_reverse(t_list *alst)
 {
 	t_list	*prev;
 	t_list	*cur;

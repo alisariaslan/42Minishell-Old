@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strtrim.c                                          :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrameau <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 00:50:46 by jrameau           #+#    #+#             */
-/*   Updated: 2016/09/27 00:50:47 by jrameau          ###   ########.fr       */
+/*   Updated: 2023/05/03 22:16:38 by tyavas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	has_whitespaces(char *str, int *i, size_t *j)
 	return (0);
 }
 
-char		*ft_strtrim(char const *s)
+char	*ft_strtrim(char const *s)
 {
 	int		i;
 	size_t	j;
@@ -38,8 +38,10 @@ char		*ft_strtrim(char const *s)
 	j = ft_strlen(s) - 1;
 	if (!has_whitespaces((char *)s, &i, &j) || !ft_strlen(s))
 		return ((char *)s);
-	new_size = (i == (int)ft_strlen(s)) ? 0 : ft_strlen(s) - (size_t)i - \
-				(ft_strlen(s) - j);
+	if (i == (int)ft_strlen(s))
+		new_size = 0;
+	else
+		new_size = ft_strlen(s) - (size_t)i - (ft_strlen(s) - j);
 	new_str = ft_strnew(new_size + 1);
 	if (!new_str)
 		return (NULL);

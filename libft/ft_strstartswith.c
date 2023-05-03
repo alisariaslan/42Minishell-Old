@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstartswith.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrameau <jrameau@student.42.us.org>        +#+  +:+       +#+        */
+/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:33:27 by jrameau           #+#    #+#             */
-/*   Updated: 2017/04/19 22:52:24 by jrameau          ###   ########.fr       */
+/*   Updated: 2023/05/03 22:04:09 by tyavas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strstartswith(char *s1, char *s2)
+int	ft_strstartswith(char *s1, char *s2)
 {
 	int	i;
 

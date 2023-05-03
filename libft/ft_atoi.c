@@ -3,30 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrameau <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/23 04:34:26 by jrameau           #+#    #+#             */
-/*   Updated: 2016/09/23 04:34:27 by jrameau          ###   ########.fr       */
+/*   Updated: 2023/05/03 21:36:50 by tyavas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int		i;
-	int		num;
-	int		sign;
+	int	i;
+	int	num;
+	int	sign;
 
 	i = 0;
 	num = 0;
 	sign = 1;
-	while (*(str + i) == '\n' ||
-		*(str + i) == '\t' ||
-		*(str + i) == '\r' ||
-		*(str + i) == '\v' ||
-		*(str + i) == '\f' ||
-		*(str + i) == ' ')
+	while (*(str + i) == '\n' || *(str + i) == '\t'
+		|| *(str + i) == '\r' || *(str + i) == '\v'
+		|| *(str + i) == '\f' || *(str + i) == ' ')
 		i++;
 	if (*(str + i) == '-')
 		sign = -1;

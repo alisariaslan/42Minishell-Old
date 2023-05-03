@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrameau <jrameau@student.42.us.org>        +#+  +:+       +#+        */
+/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 13:09:38 by jrameau           #+#    #+#             */
-/*   Updated: 2017/04/19 22:47:25 by jrameau          ###   ########.fr       */
+/*   Updated: 2023/05/03 21:49:15 by tyavas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		higher_nums(int num)
+int	higher_nums(int num)
 {
 	if (num >= 10000000)
 	{
@@ -25,7 +25,7 @@ int		higher_nums(int num)
 	return (6);
 }
 
-int		ft_intlen(int num)
+int	ft_intlen(int num)
 {
 	if (num >= 100000)
 		return (higher_nums(num));

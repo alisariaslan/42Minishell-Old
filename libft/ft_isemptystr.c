@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isemptystr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrameau <jrameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 00:03:25 by jrameau           #+#    #+#             */
-/*   Updated: 2017/05/21 01:09:11 by jrameau          ###   ########.fr       */
+/*   Updated: 2023/05/03 21:49:31 by tyavas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isemptystr(char *str, int consider_space)
+int	ft_isemptystr(char *str, int consider_space)
 {
-	int		i;
-	int		min;
-	int		max;
+	int	i;
+	int	min;
+	int	max;
 
 	i = -1;
 	min = 32 + consider_space;
