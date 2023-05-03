@@ -6,7 +6,7 @@
 /*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 00:50:46 by jrameau           #+#    #+#             */
-/*   Updated: 2023/05/03 22:16:38 by tyavas           ###   ########.fr       */
+/*   Updated: 2023/05/03 23:39:53 by tyavas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static int	has_whitespaces(char *str, int *i, size_t *j)
 {
-	while (IS_SPACE(*(str + *i)))
+	while (*(str + *i) == ' ' || *(str + *i) == '\t' || *(str + *i) == '\r'
+		|| *(str + *i) == '\f')
 		(*i)++;
-	while (IS_SPACE(*(str + *j)))
+	while (*(str + *j) == ' ' || *(str + *j) == '\t' || *(str + *j) == '\r'
+		|| *(str + *j) == '\f')
 		(*j)--;
 	if (*i || *j < ft_strlen(str))
 		return (1);

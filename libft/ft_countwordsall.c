@@ -6,7 +6,7 @@
 /*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 15:17:40 by jrameau           #+#    #+#             */
-/*   Updated: 2023/05/03 21:49:09 by tyavas           ###   ########.fr       */
+/*   Updated: 2023/05/03 23:39:01 by tyavas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ int	ft_countwordsall(char const *str)
 	count = 0;
 	while (str[i])
 	{
-		while (IS_SPACE(str[i]))
+		while (str[i] == ' ' || str[i] == '\t' || str[i] == '\r'
+			|| str[i] == '\f')
 			i++;
-		if (!IS_SPACE(str[i]) && str[i] != '\0')
+		if (!(str[i] == ' ' || str[i] == '\t' || str[i] == '\r'
+				|| str[i] == '\f') && str[i] != '\0')
 			count++;
-		while (!IS_SPACE(str[i]) && str[i] != '\0')
+		while (!(str[i] == ' ' || str[i] == '\t' || str[i] == '\r'
+				|| str[i] == '\f') && str[i] != '\0')
 			i++;
 	}
 	return (count);

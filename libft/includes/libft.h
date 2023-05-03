@@ -6,7 +6,7 @@
 /*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 21:30:24 by jrameau           #+#    #+#             */
-/*   Updated: 2023/05/03 23:22:44 by tyavas           ###   ########.fr       */
+/*   Updated: 2023/05/03 23:37:47 by tyavas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 
 # define BUFF_SIZE 100
-# define IS_SPACE(x) (x == ' ' || x == '\t' || x == '\r' || x == '\f')
 
 void				ft_putchar(char c);
 void				ft_putstr(char const *str);
