@@ -3,51 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/28 02:04:57 by jrameau           #+#    #+#             */
-/*   Updated: 2023/05/03 21:55:01 by tyavas           ###   ########.fr       */
+/*   Created: 2022/12/09 13:56:08 by msariasl          #+#    #+#             */
+/*   Updated: 2023/03/28 11:04:17 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	get_str_len(int n)
+//COUNTS DIGIT
+int	ft_len(int n, int t)
 {
-	size_t	i;
+	int	i;
 
-	i = 1;
-	while (n)
+	i = 0;
+	if (n == 0)
+		i = 1;
+	while (n != 0)
 	{
-		n /= 10;
 		i++;
+		n = n / 10;
 	}
+	if (t < 0)
+		i++;
 	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	char			*str;
-	size_t			str_len;
-	unsigned int	n_cpy;
+	char	*str;
+	int		lenn;
+	int		sign;
+	long	n2;
 
-	str_len = get_str_len(n);
-	n_cpy = n;
-	if (n < 0)
-	{
-		n_cpy = -n;
-		str_len++;
-	}
-	str = ft_strnew(str_len);
+	n2 = n;
+	if (n2 < 0)
+		sign = -1;
+	else
+		sign = 1;
+	n2 = sign * n2;
+	lenn = ft_len(n2, sign);
+	str = (char *)malloc(sizeof(char) * lenn + 1);
 	if (!str)
-		return (NULL);
-	str[--str_len] = n_cpy % 10 + '0';
-	while (n_cpy)
+		return (0);
+	str[lenn] = '\0';
+	while (--lenn >= 0)
 	{
-		n_cpy /= 10;
-		str[--str_len] = n_cpy % 10 + '0';
+		str[lenn] = '0' + (n2 % 10);
+		n2 = n2 / 10;
 	}
-	if (n < 0)
-		*(str + 0) = '-';
+	if (sign == -1)
+		str[0] = '-';
 	return (str);
 }

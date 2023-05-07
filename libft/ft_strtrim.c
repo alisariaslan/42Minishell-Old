@@ -3,51 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 00:50:46 by jrameau           #+#    #+#             */
-/*   Updated: 2023/05/03 23:39:53 by tyavas           ###   ########.fr       */
+/*   Created: 2022/10/18 12:55:31 by ali               #+#    #+#             */
+/*   Updated: 2022/10/24 20:00:21 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	has_whitespaces(char *str, int *i, size_t *j)
+static int	ft_char_in_set(char c, char const *set)
 {
-	while (*(str + *i) == ' ' || *(str + *i) == '\t' || *(str + *i) == '\r'
-		|| *(str + *i) == '\f')
-		(*i)++;
-	while (*(str + *j) == ' ' || *(str + *j) == '\t' || *(str + *j) == '\r'
-		|| *(str + *j) == '\f')
-		(*j)--;
-	if (*i || *j < ft_strlen(str))
-		return (1);
+	size_t	i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (set[i] == c)
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
-char	*ft_strtrim(char const *s)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		i;
-	size_t	j;
-	int		k;
-	char	*new_str;
-	size_t	new_size;
+	char	*str;
+	size_t	i;
+	size_t	start;
+	size_t	end;
 
-	if (!s)
+	start = 0;
+	while (s1[start] && ft_char_in_set(s1[start], set))
+		start++;
+	end = ft_strlen(s1);
+	while (end > start && ft_char_in_set(s1[end - 1], set))
+		end--;
+	str = (char *) malloc(sizeof(*s1) * (end - start + 1));
+	if (!str)
 		return (NULL);
 	i = 0;
-	k = 0;
-	j = ft_strlen(s) - 1;
-	if (!has_whitespaces((char *)s, &i, &j) || !ft_strlen(s))
-		return ((char *)s);
-	if (i == (int)ft_strlen(s))
-		new_size = 0;
-	else
-		new_size = ft_strlen(s) - (size_t)i - (ft_strlen(s) - j);
-	new_str = ft_strnew(new_size + 1);
-	if (!new_str)
-		return (NULL);
-	while (i <= (int)j)
-		*(new_str + k++) = *(s + i++);
-	return (new_str);
+	while (start < end)
+		str[i++] = s1[start++];
+	str[i] = 0;
+	return (str);
 }

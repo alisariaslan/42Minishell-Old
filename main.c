@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 04:17:47 by jrameau           #+#    #+#             */
-/*   Updated: 2023/05/02 16:15:17 by tyavas           ###   ########.fr       */
+/*   Updated: 2023/05/07 14:34:34 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 ** @param		str		The input string to parse
 ** @param		pos		The position from which to start in the string
 */
+char	**g_envv;
 
 static	char	*parse_env_var(char *str, int pos)
 {
@@ -93,7 +94,7 @@ static	char	*parse_input(char *input)
 
 static	void	get_input(char **input)
 {
-	*input = readline("\033[5;91mMini\033[0m\033[5;1;92mShell🔥💯 : \033[0m");
+	*input = readline("\033[5;91mAT\033[0m\033[5;1;92mShell: \033[0m");
 	if (!*input)
 	{
 		free(*input);
@@ -144,7 +145,7 @@ int	main(int ac, char **av, char **envv)
 	char	*input;
 	int		ret;
 	char	**commands;
-
+	
 	init_envv(ac, av, envv);
 	while (1)
 	{

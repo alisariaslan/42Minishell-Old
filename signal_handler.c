@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 00:50:10 by jrameau           #+#    #+#             */
-/*   Updated: 2023/05/02 12:21:28 by tyavas           ###   ########.fr       */
+/*   Updated: 2023/05/06 17:32:49 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	proc_signal_handler(int signo)
 
 void	signal_handler(int signo)
 {
+	printf("\nsig:%d\n",signo);
 	if (signo == SIGINT)
 	{
 		ft_putstr("\n");

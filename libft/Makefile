@@ -3,36 +3,47 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+         #
+#    By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/09/21 14:58:27 by jrameau           #+#    #+#              #
-#    Updated: 2023/05/02 11:39:27 by tyavas           ###   ########.fr        #
+#    Created: 2022/10/04 21:32:18 by msariasl          #+#    #+#              #
+#    Updated: 2023/03/28 11:27:19 by msariasl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libft.a
-CFLAGS	= -Wall -Werror -Wextra -Iincludes -c
-FILES		= $(shell ls | grep -E ".+\.c")
-OBJ			= $(FILES:%.c=%.o)
+NAME = libft.a
+
+SRC = $(shell find . -type f -name "*.c" ! -name "main.c")
+OBJ = $(SRC:.c=.o)
+FLAGS = -Wall -Wextra -Werror
+
+%.o: %.c
+	gcc $(FLAGS) -c $< -o $@
+
+$(NAME): $(OBJ) *.h
+		ar -rc $(NAME) $(OBJ)
 
 all: $(NAME)
 
-# This won't run if the .o files don't exist or are not modified
-$(NAME): $(OBJ)
-	@ar rcs $(NAME) $(OBJ)
-
-# This won't run if the source files don't exist or are not modified
-$(OBJ): $(FILES)
-	gcc $(CFLAGS) $(FILES)
-
 clean:
-	@rm -f $(OBJ)
+	rm -rf *.o
+	rm -rf *.out
 
-fclean: clean
-	@rm -f $(NAME)
+fclean:
+	make clean
+	rm -rf $(NAME)
 
-re: fclean all
+re:
+	make fclean
+	make
 
-# I use .PHONY to make sure that gnu make will still run even if files called
-# clean / fclean / all and re already exist in the directory
-.PHONY: clean fclean all re
+n:
+	clear
+	norminette $(SRC) -R CheckForbiddenSourceHeader
+
+test:
+	make
+	gcc main.c -L. $(NAME)
+	./a.out
+	
+
+.PHONY: all clean fclean re

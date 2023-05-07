@@ -3,67 +3,36 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+         #
+#    By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/12/13 11:43:23 by jrameau           #+#    #+#              #
-#    Updated: 2023/05/02 12:17:22 by tyavas           ###   ########.fr        #
+#    Created: 2023/05/06 16:24:52 by msariasl          #+#    #+#              #
+#    Updated: 2023/05/07 14:32:34 by msariasl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Project file
 NAME = minishell
+FLAGS = -Wall -Wextra -Werror
 
-# Project builds and dirs
-SRCDIR = ./src/
-SRCNAMES = $(shell ls $(SRCDIR) | grep -E ".+\.c")
-SRC = $(addprefix $(SRCDIR), $(SRCNAMES))
-INC = ./inc/
-BUILDDIR = ./build/
-BUILDOBJS = $(addprefix $(BUILDDIR), $(SRCNAMES:.c=.o))
+all: $(NAME)
 
-# Libft builds and dirs
-LIBDIR = ./libft/
-LIBFT = ./libft/libft.a
-LIBINC = ./libft/includes/
+$(NAME): *.c *.h libft/*.c libft/*.h
+	make -C libft
+	gcc -c *.c
+	gcc *.o libft/libft.a -lreadline -o $(NAME)
+	make clean
 
-# Optimization and Compiler flags and commands
-CC = gcc -g
-CFLAGS = 
-
-# Debugging flags
-DEBUG = -g
-
-# Main rule
-all: $(BUILDDIR) $(LIBFT) $(NAME)
-
-# Object dir rule
-$(BUILDDIR):
-	mkdir -p $(BUILDDIR)
-
-# Objects rule
-$(BUILDDIR)%.o:$(SRCDIR)%.c
-	$(CC) $(CFLAGS) -I$(LIBINC) -I$(INC) -o $@ -c $< 
-
-# Project file rule
-$(NAME): $(BUILDOBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(BUILDOBJS) $(LIBFT) -lreadline
-
-# Libft rule
-$(LIBFT):
-	make -C $(LIBDIR)
-
-# Cleaning up the build files
 clean:
-	rm -rf $(BUILDDIR)
-	make -C $(LIBDIR) clean
+	rm -rf *.o
+	rm -rf build/*.o
+	rm -rf libft/*.o
 
-# Getting rid of the project file
 fclean: clean
-	rm -rf $(NAME)
-	make -C $(LIBDIR) fclean
+	rm -rf minishell
+	rm -rf libft/*.a
 
-# Do both of the above
 re: fclean all
 
-# Just in case those files exist in the root dir
 .PHONY: all fclean clean re
+
+n:
+	norminette -R CheckForbiddenSourceHeader

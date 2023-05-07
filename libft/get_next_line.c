@@ -3,74 +3,105 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/29 22:52:30 by jrameau           #+#    #+#             */
-/*   Updated: 2023/05/04 01:45:57 by tyavas           ###   ########.fr       */
+/*   Created: 2022/12/20 22:05:20 by msariasl          #+#    #+#             */
+/*   Updated: 2023/03/28 11:34:26 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-static t_list	*get_correct_file(t_list **file, int fd)
+static char	*get_raw_line(int fd, char *raw_str)
 {
-	t_list	*tmp;
+	char	*buff;
+	int		byte;
 
-	tmp = *file;
-	while (tmp)
+	byte = 1;
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buff)
+		return (NULL);
+	while (!ft_gnl_strchr(raw_str, '\n') && byte != 0)
 	{
-		if ((int)tmp->content_size == fd)
-			return (tmp);
-		tmp = tmp->next;
+		byte = read(fd, buff, BUFFER_SIZE);
+		if (byte == -1)
+		{
+			free(buff);
+			return (NULL);
+		}
+		buff[byte] = '\0';
+		raw_str = ft_gnl_strjoin(raw_str, buff);
 	}
-	tmp = ft_lstnew("\0", fd);
-	ft_lstadd(file, tmp);
-	tmp = *file;
-	return (tmp);
+	free(buff);
+	return (raw_str);
 }
 
-int	control_reaf(int fd, char *buf, t_list *curr)
+static char	*get_refined_str(char *raw_str)
 {
-	int	ret;
+	char	*ret;
+	int		after_newline;
+	int		i;
 
-	ret = 0;
-	ret = read(fd, buf, BUFF_SIZE);
-	while (ret)
+	if (!raw_str || raw_str[0] == '\0')
+		return (NULL);
+	i = 0;
+	after_newline = newline_counter(raw_str);
+	ret = malloc(sizeof(char) * (after_newline + 2));
+	if (!ret)
+		return (NULL);
+	while (raw_str[i] != '\0' && raw_str[i] != '\n')
 	{
-		buf[ret] = '\0';
-		curr->content = ft_strjoin(curr->content, buf);
-		if (curr->content)
-			return (-1);
-		if (ft_strchr(buf, '\n'))
-			break ;
-		ret = read(fd, buf, BUFF_SIZE);
+		ret[i] = raw_str[i];
+		i++;
 	}
+	if (raw_str[i] == '\n')
+	{
+		ret[i] = raw_str[i];
+		i++;
+	}
+	ret[i] = '\0';
 	return (ret);
 }
 
-int	get_next_line(const int fd, char **line)
+static char	*get_new_raw_str(char *str)
 {
-	char			buf[BUFF_SIZE + 1];
-	static t_list	*file;
-	int				i;
-	int				ret;
-	t_list			*curr;
+	int		i;
+	int		s;
+	char	*rest;
 
-	if ((fd < 0 || line == NULL || read(fd, buf, 0) < 0))
-		return (-1);
-	curr = get_correct_file(&file, fd);
-	*line = ft_strnew(1);
-	if (!*line)
-		return (-1);
-	ret = control_reaf(fd, buf, curr);
-	if (ret == -1)
-		return (-1);
-	if (ret < BUFF_SIZE && !ft_strlen(curr->content))
-		return (0);
-	i = ft_copyuntil(line, curr->content, '\n');
-	if (i < (int)ft_strlen(curr->content))
-		curr->content += (i + 1);
-	else
-		ft_strclr(curr->content);
-	return (1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i] != '\n' && str[i])
+		i++;
+	if (str[i] == '\0')
+	{
+		free(str);
+		return (NULL);
+	}
+	rest = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+	if (!rest)
+		return (NULL);
+	i++;
+	s = 0;
+	while (str[i])
+		rest[s++] = str[i++];
+	rest[s] = '\0';
+	free(str);
+	return (rest);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*raw_str;
+	char		*refined_str;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	raw_str = get_raw_line(fd, raw_str);
+	if (!raw_str)
+		return (NULL);
+	refined_str = get_refined_str(raw_str);
+	raw_str = get_new_raw_str(raw_str);
+	return (refined_str);
 }
