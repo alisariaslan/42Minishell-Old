@@ -5,33 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/15 13:00:58 by ali               #+#    #+#             */
-/*   Updated: 2022/10/24 21:45:18 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:43:08 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:43:10 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *s1, const char *s2, size_t n)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t	i;
-	size_t	j;
-	size_t	s2_len;
+	size_t		i;
+	size_t		j;
+	size_t		k;
+	int			found;
 
-	i = 0;
-	s2_len = ft_strlen(s2);
-	if (!s2_len)
-		return ((char *)s1);
-	if (n != 0)
+	i = -1;
+	found = 1;
+	if (!ft_strlen(little))
+		return ((char *)big);
+	while (*(big + ++i) && i < len)
 	{
-		while (s1[i] && i <= n - s2_len)
+		j = 0;
+		if (*(big + i) == *(little + 0))
 		{
-			j = 0;
-			while (s2[j] && s2[j] == s1[i + j])
-				j++;
-			if (j == s2_len)
-				return ((char *)&s1[i]);
-			i++;
+			k = i;
+			found = 1;
+			while (*(big + k) && *(little + j) && j < len && k < len)
+				if (*(big + k++) != *(little + j++))
+					found = 0;
+			if (found && !*(little + j))
+				return ((char *)big + i);
 		}
 	}
 	return (NULL);

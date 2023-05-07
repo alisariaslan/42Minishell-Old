@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 16:07:13 by msariasl          #+#    #+#             */
-/*   Updated: 2023/03/28 10:37:21 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:38:51 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:38:52 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {
-	if (!lst)
-		return ;
-	(*del)(lst);
+	del((*alst)->content, (*alst)->content_size);
+	free(*alst);
+	*alst = NULL;
 }

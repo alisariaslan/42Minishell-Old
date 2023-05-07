@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/11 00:50:10 by jrameau           #+#    #+#             */
-/*   Updated: 2023/05/06 17:32:49 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:21:44 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:50:51 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	proc_signal_handler(int signo)
 
 void	signal_handler(int signo)
 {
-	printf("\nsig:%d\n",signo);
+	printf("\nsig:%d\n", signo);
 	if (signo == SIGINT)
 	{
 		ft_putstr("\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_prompt_msg.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/26 04:49:25 by jrameau           #+#    #+#             */
-/*   Updated: 2023/05/02 21:03:39 by tyavas           ###   ########.fr       */
+/*   Created: 2023/05/07 16:22:30 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:22:31 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

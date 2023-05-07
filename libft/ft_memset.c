@@ -5,19 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 23:12:16 by ali               #+#    #+#             */
-/*   Updated: 2022/10/24 19:59:24 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:39:41 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:39:42 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	void	*v;
+	char	*ptr;
+	size_t	i;
 
-	v = s;
-	while (n--)
-		*(char *)s++ = (unsigned char)c;
-	return (v);
+	ptr = b;
+	i = 0;
+	while (i < len)
+		*(ptr + i++) = c;
+	return (b);
 }

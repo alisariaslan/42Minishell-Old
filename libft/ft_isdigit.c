@@ -5,16 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 21:37:26 by msariasl          #+#    #+#             */
-/*   Updated: 2022/10/24 19:59:01 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:37:58 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:37:59 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int i)
+int	ft_isdigit(int c)
 {
-	if (i >= '0' && i <= '9')
-		return (1);
-	return (0);
+	return (c <= '9' && c >= '0');
 }

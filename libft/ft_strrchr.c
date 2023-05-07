@@ -5,25 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 22:14:23 by ali               #+#    #+#             */
-/*   Updated: 2022/10/27 14:04:38 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:43:16 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:43:18 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *src, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-	char	*str;
-	int		srclen;
+	int		i;
 
-	str = (char *)src;
-	srclen = ft_strlen(str);
-	while (srclen >= 0)
-	{
-		if (str[srclen] == (char)c)
-			return (&str[srclen]);
-		srclen = srclen - 1;
-	}
-	return (0);
+	i = (int)ft_strlen(s) + 1;
+	while (i--)
+		if (*(s + i) == (char)c)
+			return ((char *)s + i);
+	return (NULL);
 }

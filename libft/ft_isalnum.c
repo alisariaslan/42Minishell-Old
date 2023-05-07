@@ -5,16 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 21:37:26 by msariasl          #+#    #+#             */
-/*   Updated: 2022/10/24 19:58:54 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:37:45 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:37:47 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int i)
+int	ft_isalnum(int c)
 {
-	if (ft_isalpha(i) || ft_isdigit(i))
-		return (1);
-	return (0);
+	return (ft_isalpha(c) || ft_isdigit(c));
 }

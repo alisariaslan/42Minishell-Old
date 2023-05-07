@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 21:37:26 by msariasl          #+#    #+#             */
-/*   Updated: 2022/10/24 20:00:27 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:49:31 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:49:32 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int i)
+int	ft_tolower(int c)
 {
-	if (i >= 'A' && i <= 'Z')
-		return (i + 32);
-	return (i);
+	if (ft_isupper(c))
+		return (c + 32);
+	return (c);
 }

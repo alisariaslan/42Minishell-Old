@@ -5,16 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 21:37:26 by msariasl          #+#    #+#             */
-/*   Updated: 2022/10/24 19:58:56 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:37:49 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:37:51 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int i)
+int	ft_isalpha(int c)
 {
-	if ((i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'))
-		return (1);
-	return (0);
+	return (ft_islower(c) || ft_isupper(c));
 }

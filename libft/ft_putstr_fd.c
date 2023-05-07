@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 10:35:44 by ali               #+#    #+#             */
-/*   Updated: 2022/10/24 19:59:33 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:40:23 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:40:24 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char const *s, int fd)
 {
 	write(fd, s, ft_strlen(s));
 }

@@ -5,46 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 12:55:31 by ali               #+#    #+#             */
-/*   Updated: 2022/10/24 20:00:21 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:49:27 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:49:28 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_char_in_set(char c, char const *set)
+static int	has_whitespaces(char *str, int *i, size_t *j)
 {
-	size_t	i;
-
-	i = 0;
-	while (set[i])
-	{
-		if (set[i] == c)
-			return (1);
-		i++;
-	}
+	while (*(str + *i) == ' ' || *(str + *i) == '\t' || *(str + *i) == '\r'
+		|| *(str + *i) == '\f')
+		(*i)++;
+	while (*(str + *j) == ' ' || *(str + *j) == '\t' || *(str + *j) == '\r'
+		|| *(str + *j) == '\f')
+		(*j)--;
+	if (*i || *j < ft_strlen(str))
+		return (1);
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s)
 {
-	char	*str;
-	size_t	i;
-	size_t	start;
-	size_t	end;
+	int		i;
+	size_t	j;
+	int		k;
+	char	*new_str;
+	size_t	new_size;
 
-	start = 0;
-	while (s1[start] && ft_char_in_set(s1[start], set))
-		start++;
-	end = ft_strlen(s1);
-	while (end > start && ft_char_in_set(s1[end - 1], set))
-		end--;
-	str = (char *) malloc(sizeof(*s1) * (end - start + 1));
-	if (!str)
+	if (!s)
 		return (NULL);
 	i = 0;
-	while (start < end)
-		str[i++] = s1[start++];
-	str[i] = 0;
-	return (str);
+	k = 0;
+	j = ft_strlen(s) - 1;
+	if (!has_whitespaces((char *)s, &i, &j) || !ft_strlen(s))
+		return ((char *)s);
+	if (i == (int)ft_strlen(s))
+		new_size = 0;
+	else
+		new_size = ft_strlen(s) - (size_t)i - (ft_strlen(s) - j);
+	new_str = ft_strnew(new_size + 1);
+	if (!new_str)
+		return (NULL);
+	while (i <= (int)j)
+		*(new_str + k++) = *(s + i++);
+	return (new_str);
 }

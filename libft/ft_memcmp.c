@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/15 12:42:09 by ali               #+#    #+#             */
-/*   Updated: 2022/10/26 20:48:34 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:39:21 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:39:23 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	i;
+	unsigned char	*s1c;
+	unsigned char	*s2c;
+	size_t			i;
 
-	i = 0;
-	while (i < n)
-	{
-		if (((unsigned char *)s1)[i] != ((unsigned char *)s2)[i])
-			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
-		i++;
-	}
-	return (0);
+	i = -1;
+	s1c = (unsigned char *)s1;
+	s2c = (unsigned char *)s2;
+	while (++i < n && *(s1c + i) == *(s2c + i))
+		;
+	if (i == n)
+		return (0);
+	return (*(s1c + i) - *(s2c + i));
 }

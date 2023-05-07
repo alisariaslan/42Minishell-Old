@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 21:37:26 by msariasl          #+#    #+#             */
-/*   Updated: 2022/10/24 19:58:43 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:37:07 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:37:08 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,13 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(s, 0, n);
+	char	*ptr;
+	size_t	i;
+
+	if (!n)
+		return ;
+	ptr = s;
+	i = 0;
+	while (i < n)
+		*(ptr + i++) = 0;
 }

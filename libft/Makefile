@@ -5,45 +5,34 @@
 #                                                     +:+ +:+         +:+      #
 #    By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/04 21:32:18 by msariasl          #+#    #+#              #
-#    Updated: 2023/03/28 11:27:19 by msariasl         ###   ########.fr        #
+#    Created: 2023/05/07 16:50:04 by msariasl          #+#    #+#              #
+#    Updated: 2023/05/07 16:50:05 by msariasl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-
-SRC = $(shell find . -type f -name "*.c" ! -name "main.c")
-OBJ = $(SRC:.c=.o)
-FLAGS = -Wall -Wextra -Werror
-
-%.o: %.c
-	gcc $(FLAGS) -c $< -o $@
-
-$(NAME): $(OBJ) *.h
-		ar -rc $(NAME) $(OBJ)
+NAME		= libft.a
+CFLAGS	= -Wall -Werror -Wextra -Iincludes -c
+FILES		= $(shell ls | grep -E ".+\.c")
+OBJ			= $(FILES:%.c=%.o)
 
 all: $(NAME)
 
+# This won't run if the .o files don't exist or are not modified
+$(NAME): $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
+
+# This won't run if the source files don't exist or are not modified
+$(OBJ): $(FILES)
+	gcc $(CFLAGS) $(FILES)
+
 clean:
-	rm -rf *.o
-	rm -rf *.out
+	@rm -f $(OBJ)
 
-fclean:
-	make clean
-	rm -rf $(NAME)
+fclean: clean
+	@rm -f $(NAME)
 
-re:
-	make fclean
-	make
+re: fclean all
 
-n:
-	clear
-	norminette $(SRC) -R CheckForbiddenSourceHeader
-
-test:
-	make
-	gcc main.c -L. $(NAME)
-	./a.out
-	
-
-.PHONY: all clean fclean re
+# I use .PHONY to make sure that gnu make will still run even if files called
+# clean / fclean / all and re already exist in the directory
+.PHONY: clean fclean all re

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unsetenv_builtin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyavas <tyavas@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/08 15:35:14 by jrameau           #+#    #+#             */
-/*   Updated: 2023/05/02 14:26:23 by tyavas           ###   ########.fr       */
+/*   Created: 2023/05/07 16:21:49 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:21:50 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

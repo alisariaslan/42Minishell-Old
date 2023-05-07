@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 22:25:21 by msariasl          #+#    #+#             */
-/*   Updated: 2022/10/24 19:59:05 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:38:14 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:38:15 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int i)
+#include "libft.h"
+
+int	ft_isprint(int c)
 {
-	if (i >= 32 && i <= 126)
-		return (1);
-	return (0);
+	return (c >= 32 && c < 127);
 }

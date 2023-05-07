@@ -5,15 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 10:37:06 by ali               #+#    #+#             */
-/*   Updated: 2022/10/25 00:12:10 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:39:59 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:40:00 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	ft_putendl_fd(char const *s, int fd)
 {
-	ft_putstr_fd(s, fd);
-	ft_putchar_fd('\n', fd);
+	char	*tmp;
+
+	tmp = ft_strjoin(s, "\n");
+	ft_putstr_fd(tmp, fd);
+	free(tmp);
 }

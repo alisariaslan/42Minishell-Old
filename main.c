@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/24 04:17:47 by jrameau           #+#    #+#             */
-/*   Updated: 2023/05/07 14:34:34 by msariasl         ###   ########.fr       */
+/*   Created: 2023/05/07 16:22:09 by msariasl          #+#    #+#             */
+/*   Updated: 2023/05/07 16:51:08 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ int	main(int ac, char **av, char **envv)
 	char	*input;
 	int		ret;
 	char	**commands;
-	
+
 	init_envv(ac, av, envv);
 	while (1)
 	{
