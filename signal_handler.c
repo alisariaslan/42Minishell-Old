@@ -6,18 +6,13 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 16:21:44 by msariasl          #+#    #+#             */
-/*   Updated: 2023/05/07 16:50:51 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/05/08 06:51:14 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Handles interruption signals on a running process
-**
-** @param		signo		The signal number
-** @return		N/A
-*/
+// Bölme/Kesme sinyallerini çalışan işlem bazlı kontrol eder.
 
 void	proc_signal_handler(int signo)
 {
@@ -28,12 +23,7 @@ void	proc_signal_handler(int signo)
 	}
 }
 
-/*
-** Handles interruption signals on the program
-**
-** @param		signo		The signal number
-** @return		N/A
-*/
+// Bölme/Kesme sinyallerini program bazlı kontrol eder.
 
 void	signal_handler(int signo)
 {
@@ -41,7 +31,7 @@ void	signal_handler(int signo)
 	if (signo == SIGINT)
 	{
 		ft_putstr("\n");
-		ft_putstr("\033[5;91mMini\033[0m\033[5;1;92mShell🔥💯 : \033[0m");
+		ft_putstr("\033[5;91mAT\033[0m\033[5;1;92mShell : \033[0m");
 		signal(SIGINT, signal_handler);
 	}
 }
