@@ -6,19 +6,13 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 16:22:19 by msariasl          #+#    #+#             */
-/*   Updated: 2023/05/07 16:22:21 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:49:59 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Prints out a string on the screen
-**
-** @param		str		The string to print
-** @param		pos		The position at which to start printing
-** @return		N/A
-*/
+//ekrana string yazdırır
 
 static	void	echo_out(char **str, int pos)
 {
@@ -41,12 +35,7 @@ static	void	echo_out(char **str, int pos)
 		ft_putchar(' ');
 }
 
-/*
-** Executes the builtin echo command
-**
-** @param		args		The arguments to pass to echo
-** @return		1 on completion
-*/
+//builtin echo komutu çalışır
 
 int	echo_builtin(char **args)
 {

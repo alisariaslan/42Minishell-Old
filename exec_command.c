@@ -6,20 +6,13 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 16:22:14 by msariasl          #+#    #+#             */
-/*   Updated: 2023/05/07 16:22:16 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:49:40 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Runs the binary file by creating a new process and handles signals in case
-** of interruptions then returns whether it executed successfully or not
-**
-** @param		path	The path to the binary file
-** @param		args	The arguments to pass to the system command
-** @return		-1 on failure, 1 on success
-*/
+//yeni process oluşturarak binary dosya çalıştırır
 
 static	int	run_cmd(char *path, char **args)
 {
@@ -41,13 +34,7 @@ static	int	run_cmd(char *path, char **args)
 	return (1);
 }
 
-/*
-** Checks if the first word in the input is one of the builtin commands, if it
-** is, it executes it and returns -1, 0, or 1
-**
-** @param		command		The array of strings that contains the command
-** @return		-1 on exit, 0 if it's not a builtin, 1 otherwise
-*/
+//input un ilk kelimesi builtin mi kontrol eder
 
 static	int	check_builtins(char **command)
 {
@@ -69,18 +56,7 @@ static	int	check_builtins(char **command)
 	return (0);
 }
 
-/*
-** Checks if the path is a regular file and is an executable, if it is,
-** it executes it, if not, it prints an error on the screen then it returns
-** whether it executed successfully or not
-**
-** @param		bin_path	The path to search for
-** @param		f			The path information from stat/lstat
-** @param		command		The array of strings containing each word from the
-** 							input
-** @return		0 if the first path is not an executable or if the command
-** 				was not executed properly or 1 for the opposite
-*/
+//yol dosya ve executable kontrolü yapar
 
 static	int	is_executable(char *bin_path, struct stat f, char **command)
 {
@@ -100,16 +76,7 @@ static	int	is_executable(char *bin_path, struct stat f, char **command)
 	return (0);
 }
 
-/*
-** Uses the first word of the input to search for an existing executable on the
-** system, executes it if it found it and returns whether it found it or not
-**
-** @param		command		The array of strings containing each word from the
-** 							input
-** @param		path		The value of the PATH environment variable
-** @return		0 if the first word is not an executable or if the command was
-**				not executed properly or 1 for the opposite
-*/
+//input in ilk kelimesini arar ve devam eder
 
 static int	check_bins(char **command)
 {
@@ -138,18 +105,7 @@ static int	check_bins(char **command)
 	return (0);
 }
 
-/*
-** Executes a command and prints the result on the screen then returns whether
-** there was a an exit or not
-** The steps are:
-**		1. Check if it's a builtin command, if not...
-**		2. Check if it's a system command, if not ...
-**		3. Check if it's a folder or an executable, if not...
-**		4. Display an error (not found) message.
-**
-** @param		command		The command to execute
-** @return		-1 if there was an interruption (exit) or 0/1 if not
-*/
+//komut çalıştırır aksi durum oluşmazsa execute eder
 
 int	exec_command(char **command)
 {

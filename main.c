@@ -6,19 +6,14 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 16:22:09 by msariasl          #+#    #+#             */
-/*   Updated: 2023/05/07 16:51:08 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:45:59 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Parses a string to convert variables to their value then returns the parsed
-** string
-**
-** @param		str		The input string to parse
-** @param		pos		The position from which to start in the string
-*/
+//string i parse eder ve değişkenleri değerlerine çevirir daha sonra parse edilmiş halini döndürür
+
 char	**g_envv;
 
 static	char	*parse_env_var(char *str, int pos)
@@ -44,14 +39,7 @@ static	char	*parse_env_var(char *str, int pos)
 	return (value);
 }
 
-/*
-** Parses the input by changing $VAR_NAME to the value of VAR_NAME in the
-** environment variable or by nothing if it doesn't exist and by changing ~
-** to the value of the user's home path then returns the parsed string
-**
-** @param		input		The input string
-** @return		The parsed string
-*/
+//inputu değişken adına göre parse eder
 
 static	char	*parse_input(char *input)
 {
@@ -82,15 +70,8 @@ static	char	*parse_input(char *input)
 	return (new);
 }
 
-/*
-** Displays a prompt on the screen and fills the input character by character
-** then adds it to the referenced variable (input) after parsing the whole
-** input if necessary
-** TODO: Not the most efficient way, will improve it later
-**
-** @param	input	The address of the variable to fill with the parsed input
-** @return	N/A
-*/
+//ekranda prompt açar ve input ile doldurur ve devam eder.
+
 
 static	void	get_input(char **input)
 {
@@ -104,13 +85,7 @@ static	void	get_input(char **input)
 		*input = parse_input(*input);
 }
 
-/*
-** Takes care of multiple commands in the input
-**
-** @param		commands	The list of commands to execute
-** @return		-1 if there was an interruption from one of the commands
-**				or 0/1 if not
-*/
+//çoklu komutlar ile uğraşır
 
 int	exec_commands(char **commands)
 {
@@ -130,15 +105,6 @@ int	exec_commands(char **commands)
 	}
 	return (ret);
 }
-
-/*
-** Initializes minishell
-**
-** @param	ac		argument counts
-** @param	av		argument variables
-** @param	envv	environment variables
-** @return	0 on completion
-*/
 
 int	main(int ac, char **av, char **envv)
 {

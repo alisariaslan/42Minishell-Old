@@ -6,18 +6,13 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 16:22:30 by msariasl          #+#    #+#             */
-/*   Updated: 2023/05/07 16:22:31 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:50:36 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Kills the shell gracefully
-**
-** @param		N/A
-** @return		N/A
-*/
+//shell kill
 
 void	exit_shell(void)
 {
@@ -26,16 +21,7 @@ void	exit_shell(void)
 	exit(0);
 }
 
-/*
-** Parses a path string from ~ to the home path or from the home path to ~
-** depending on reverse_parse and returns the parsed string
-**
-** @param	path	the string to parse
-** @param	reverse_parse	0 to parse from home path to ~, 1 to parse from ~
-** 						to home path
-** @return	NULL if path doesn't exist or the parsed string (new) or a copy of
-** path if path is not a fit
-*/
+//path string i parse eder ve devam eder
 
 char	*parse_home_path(char *path, int reverse_parse)
 {

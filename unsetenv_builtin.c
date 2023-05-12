@@ -6,18 +6,13 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 16:21:49 by msariasl          #+#    #+#             */
-/*   Updated: 2023/05/07 16:21:50 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:40:25 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Prints the environment variable on the screen
-**
-** @param		N/A
-** @returns	N/A
-*/
+//env değişkeni ekrana yazdırır
 
 void	print_env(void)
 {
@@ -28,12 +23,7 @@ void	print_env(void)
 		ft_putendl(g_envv[i]);
 }
 
-/*
-** Returns the length of the parent shell environment variable
-**
-** @param	envv	The parent shell environment variable
-** @return	The length of envv
-*/
+//parent shell env değişkeninin uzunluğunu döndürür
 
 static	int	envv_len(char **envv)
 {
@@ -47,17 +37,8 @@ static	int	envv_len(char **envv)
 	return (count);
 }
 
-/*
-** Makes a copy of the environment variable of the parent shell into the
-** global variable g_envv
-** NOTE: I'm using a global variable so I can be able to free the memory once
-** the program gets killed
-**
-** @param	ac		argument counts
-** @param	av		argument variables
-** @param	envv	The parent shell environment variable
-** @return	N/A
-*/
+//parent shell in env değişkeninin kopyasını oluşturur
+//global değişken kullanarak program kill atıldığında freeleyebiliriz 
 
 void	init_envv(int ac, char **av, char **envv)
 {
@@ -75,15 +56,7 @@ void	init_envv(int ac, char **av, char **envv)
 	}
 }
 
-/*
-** Removes a variable from the environment variable list
-** NOTE: Always make sure to search for the variable before using this
-** function, it expects that you're sure the variable already exists
-** in the environment
-**
-** @param		var_pos		The position at which the variable was found
-** @return	N/A
-*/
+//env da olan değilkeni kaldırır
 
 static	void	remove_env_var(int var_pos)
 {
@@ -104,12 +77,7 @@ static	void	remove_env_var(int var_pos)
 	g_envv = realloc_envv(var_count - 1);
 }
 
-/*
-** Executes the builtin unsetenv command
-**
-** @param		args		The arguments to pass to unsetenv
-** @return	1 on completion
-*/
+//builtin gelen env değişkeni unset eder
 
 int	unsetenv_builtin(char **args)
 {

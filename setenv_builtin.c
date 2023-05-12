@@ -6,20 +6,13 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 16:21:36 by msariasl          #+#    #+#             */
-/*   Updated: 2023/05/07 16:21:38 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:42:57 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Searches for a variable in the environment variable and returns its
-** index, if not found, it returns the total length
-**
-** @param		var		The variable name to find
-** @returns	The index position of the variable or the length of the
-**					environment variable
-*/
+//aranan env ın index ini döndürür. eğer yoksa tüm uzunluk döner.
 
 int	find_env_var(char *var)
 {
@@ -40,13 +33,7 @@ int	find_env_var(char *var)
 	return (i);
 }
 
-/*
-** Returns a pointer to the value of the environment variable to find
-**
-** @param	var		The variable name to find
-** @return			NULL if var wasn't found, or a pointer to
-**							the value of var in the environment
-*/
+//aranan env variable ın adresini döndürür
 
 char	*get_env_var(char *var)
 {
@@ -67,12 +54,7 @@ char	*get_env_var(char *var)
 	return (NULL);
 }
 
-/*
-** Reallocates memory for the environment variable
-**
-** @param		new_size		The new size to allocate
-** @return	A copy of the environment variable with the new size
-*/
+//env variable için memory i tekrar ayırır
 
 char	**realloc_envv(int new_size)
 {
@@ -90,13 +72,7 @@ char	**realloc_envv(int new_size)
 	return (new);
 }
 
-/*
-** Adds a variable to the environment variable using a key value pair
-**
-** @param		key		The variable name
-** @param		value	The variable value
-** @return		N/A
-*/
+//env varible ekler
 
 void	set_env_var(char *key, char *value)
 {
@@ -124,15 +100,7 @@ void	set_env_var(char *key, char *value)
 	free(tmp);
 }
 
-/*
-** Executes the setenv builtin command, takes the format 'VAR_NAME VAR_VALUE',
-** not 'VAR_NAME=VAR_VALUE'. When called with no arguments, it prints all the
-** environment variables, just like env, otherwise, it parses the arguments and
-** prints accordingly
-**
-** @param		args	The arguments to pass to setenv
-** @returns		1 on completion
-*/
+//setenv builtin komutu çalıştırır. argüman almazsa ekrana envlerin tümünü yazdırır diğer türlü argümanları parse eder ve yazdırır
 
 int	setenv_builtin(char **args)
 {

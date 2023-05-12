@@ -6,18 +6,13 @@
 /*   By: msariasl <msariasl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 16:22:35 by msariasl          #+#    #+#             */
-/*   Updated: 2023/05/07 16:22:36 by msariasl         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:51:59 by msariasl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Prints a path on the screen by making sure it's parsed first
-**
-** @param		path	The path to print
-** @return		N/A
-*/
+//path i ekrana yazdırır
 
 static	void	print_pth(char *path)
 {
@@ -28,19 +23,7 @@ static	void	print_pth(char *path)
 	free(parsed_home);
 }
 
-/*
-** Changes the working directoy and updates the environment variable
-** accordingly while handling errors
-** NOTE: I was not allowed to use errno/strerror to handle errors for this
-** project.
-** TODO: I should be changing the value of PWD too but I was getting
-** some memory leaks for some reason. I will fix that later.
-**
-** @param		path			The path to change to
-** @param		print_path		A boolean to know whether a not to print the
-**								path
-** @return		N/A
-*/
+//çalıştığımız klasörü değiştirir
 
 void	change_dir(char *path, int print_path)
 {
@@ -69,13 +52,7 @@ void	change_dir(char *path, int print_path)
 		ft_putendl(path);
 	}
 }
-
-/*
-** Checks if the input has two or more arguments and acts accordingly
-**
-** @param		args	The list of arguments to check
-** @return		0 if there is no second argument, 1 if there is
-*/
+//inputun iki veya daha fazla argümanı var mı kontrol eder
 
 static	int	has_two_args(char **args)
 {
@@ -106,12 +83,7 @@ static	int	has_two_args(char **args)
 	return (0);
 }
 
-/*
-** Executes the builtin cd command
-**
-** @param		args	The arguments to pass to cd
-** @return 		1 on completion
-*/
+//builtin cd komutu çalışır
 
 int	cd_builtin(char **args)
 {
